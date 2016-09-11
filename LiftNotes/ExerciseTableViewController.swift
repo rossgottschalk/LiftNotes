@@ -12,10 +12,20 @@ class ExerciseTableViewController: UITableViewController
 {
     
     var exercises = [String]()
+    var exercisesDetail = [String]()
     
+    
+    
+    var data = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("data from ReceiveViewController is \(data)")
+        title = data
+        
+        
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -41,11 +51,11 @@ class ExerciseTableViewController: UITableViewController
     }
     
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> ExerciseCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! ExerciseCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) //as! ExerciseCell
 
         // Configure the cell...
-        cell.exerciseTextField.text = exercises[indexPath.row]
+        cell.textLabel?.text = exercises[indexPath.row]
         return cell
     }
 
@@ -89,10 +99,6 @@ class ExerciseTableViewController: UITableViewController
     
     //MARK: - Action Handlers
     
-    @IBAction func backPressed(_ sender: AnyObject)
-    {
-        self.dismiss(animated: true, completion: nil)
-    }
     
     @IBAction func addExercisePressed(_ sender: AnyObject)
     {
@@ -123,17 +129,30 @@ class ExerciseTableViewController: UITableViewController
         present(alert,
                 animated: true,
                 completion: nil)
+        
+        
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        let indexPath = self.tableView.indexPathForSelectedRow
+        let destVC = segue.destination as! DetailViewController
+        destVC.detailString = exercisesDetail[(indexPath?.row)!]
+        
+
     }
-    */
+ 
+    
+    
+    
+    
+    
 
 }
