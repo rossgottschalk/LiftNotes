@@ -163,6 +163,7 @@ class MainTableViewController: UITableViewController
             
             destVC.data = selectedBP
             
+            
             var descriptionArray2: DescriptionClass
             descriptionArray2 = newDescriptionArray[(indexPath?.row)!]
             destVC.exercisesDetail = descriptionArray2.descriptionArray
